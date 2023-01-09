@@ -1,0 +1,51 @@
+This is a workflow that summarizes how to use our method to clean possibly noisy catalogues. 
+The steps/sub-routines on this workflow can be susbtituted by others if desired, 
+because steps work in a modular form as long as inputs/outputs are of appropriate form(at). 
+We use a set of fixed models and features fount to be well-suited for the cleaning task, 
+but others could be explored if desired. Since this process can be done iteratively, 
+different versions of some of the files may exist and thus the version number require change in the files depending on the iteration.
+
+REMINDER: When running the suggested python scripts, change default names to the dataset/volcano, feature group, and version of interest.
+
+0)create an environment following the following steps (if possible):
+conda config --add channels conda-forge
+conda create -n cata_cleaner pandas=1.5.0 matplotlib=3.6.0 scikit-learn=1.0.2 numpy=1.23.3 scipy=1.9.1 librosa=0.9.2 obspy=1.3.0
+pip install scikit-learn-intelex (if your CPU is Intel)
+conda activate cata_cleaner
+
+1) Calculate different group of features for events in the 'Event' folder.
+These events will be sorted alphanumerically and the features in the output will follow this ordering, 
+This ordering must coincide with the order of labels in the 'Catalog' folder for this process to work,
+so labels in the catalogue file should also be assigned alphanumerically. To calculate suggested groups of features
+use the function 'feature_calculator.py'. This will output three different files into the 'Features' folder.
+Remember to modify the volcano/catalog name accordingly for your dataset of study.
+
+If the files in the 'Events' folder have their label in their name, 
+you can create a Catalogue file that is compatible with the Features calculator output by using 
+(and modifying properly) the 'catalogue_labeler.py' script. 
+
+The groups of features need to be calculated only once, so there are no different versions for the files.
+Calculated feature groups are stored in the 'Features' folder, and any other group of features of interest should be located there too.
+
+2) Use calculated (or other) group of features to run the procedure for finding hyperparameters for the models. 
+The Feature groups in the 'hyperparameters_calculator.py' script must be inputed one by one.
+This means it is mandatory to modify the input for features in this file each time besides the volcano/dataset name.
+REMEMBER TO COMMENT THE sklearnex import if your CPU is not intel or you do not have the module.
+Parameters ranges can be left as they are, or ranges can be modified to other values if desired. 
+However, for feature groups with few features, the random forest classifier ranges for number of features may need to be modified,
+to a max range lower on equal to the total number of features of the feature group.
+Criteria for election of parameters include 'mode' or 'median' of hyperparameters (or worst/best accuracy).
+The models can be judged through the final global CV error plot. Since this is a trial and error, subjective process,
+we recommend using the 'Models_paramter.csv' file to save the desired parameters. 
+This step is skipable: if no search for hyperparameteres is affordable, the models for the next section will use default values.
+
+
+3) Use the hyperparameters from the previous section to modify the values of each of the models in the 'predictions_calculator.py' script. 
+If no hyperparameters can be explored, default values will be used and results might be biased. 
+Still the method should be robust enough to detect extremely unusual events. 
+Change the feature group everytime accordingly besides the volcano/catalogue.
+
+4) Use the 'statistics_plot_calculator.py' script to create plots, statistics and visualization of doubtful(or 'good') events. 
+Some lines may need to be (un)commented if some outputs are (un)desired. Also the 'good' and 'bad' event thresholds are subjective.
+They should be defined according to the histogram of consistencies or desired qualities defined by the researchers.
+

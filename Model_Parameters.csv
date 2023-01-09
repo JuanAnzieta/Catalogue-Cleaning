@@ -1,0 +1,11 @@
+Model Parameters,,,,,,,
+,,,,,,,
+Features watson,,,,,,,
+,KNN,LOGISTIC,SVM-lin,SVM-poly,SVM-RBF,simple NN,RandomForest
+,nn=,C=,C=,"degree=, C=","gamma=, C=","alpha=, layers=","estimators=,nodes=, features="
+Features titos,,,,,,,
+,KNN,LOGISTIC,SVM-lin,SVM-poly,SVM-RBF,simple NN,RandomForest
+,nn=,C=,C=,"degree=, C= ","gamma=, C=","alpha=, layers=","estimators=,nodes=, features="
+Features sotoaj,,,,,,,
+,KNN,LOGISTIC,SVM-lin,SVM-poly,SVM-RBF,simple NN,RandomForest
+,nn=,C=,C=,"degree=, C=","gamma=, C=","alpha=, layers=","estimators=,nodes=, features="
