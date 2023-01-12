@@ -23,7 +23,7 @@ from sklearn.preprocessing import StandardScaler
 
 volcano_name='Cotopaxi'############MODIFY VOLCANO/CATALOG NAME HERE AS REQUIRED
 
-features_group='watson'######MODIFY FEATURES GROUP NAME HERE FOR EACH FEATURE GROUP
+features_group='watson'######MODIFY FEATURES GROUP NAME HERE FOR EACH FEATURE GROUP [watson,titos,sotoaj]
 
 version='v0'#############MODIFY THIS ACCORDING TO THE CLEANING ITERATION
 
@@ -258,7 +258,7 @@ for i in range(V):
 	Y_test=np.vectorize(dictionary.get)(Y_test)
 
 	Nsize=[5,20,50,[20,20],[50,50],100]
-	alpharange=[0,0001,0.001,0.01,0.1,0.5,1]
+	alpharange=[0.0001,0.001,0.01,0.1,0.5,1]
 	scoresflagsd=0
 	Sflagsd=0
 	Alphaflagsd=0
@@ -302,8 +302,8 @@ for i in range(V):
 
 	estimators=[20,50,100,200]
 	nodez=[2,4,5,7,9,11,15]
-	maxfeat=[4,5,7,9,11,13] #FOR FEATURE GROUPS WITH HIGH NUMBER OF FEATURES
-	#maxfeat=[4,5,7] #FOR FEATURE GROUPS WITH LOW NUMBER OF FEATURES
+	#maxfeat=[4,5,7,9,11,13] #FOR FEATURE GROUPS WITH HIGH NUMBER OF FEATURES
+	maxfeat=[4,5,7] #FOR FEATURE GROUPS WITH LOW NUMBER OF FEATURES
 	scoresflag=0
 	Nflag=0
 	Featflag=0
