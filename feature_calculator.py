@@ -79,7 +79,6 @@ def sotoaj_feat(tr,delta):
 	freqs,amplitudes=dft_calculator(tr,delta,'Amp')
 	namplitudes=amplitudes/max(amplitudes)
 	interval_size=int(len(namplitudes)/(2*7))
-	subamplis_maxs=np.array([max(namplitudes[2+i*interval_size:2+(i+1)*interval_size]) for i in range(7)])
 	subamplis_means=np.array([np.mean(namplitudes[2+i*interval_size:2+(i+1)*interval_size]) for i in range(7)])
 
 	envelopets=abs(hilbert(np.cumsum(abs(tr))/max(np.cumsum(abs(tr)))-np.arange(len(tr))/len(tr)))
@@ -87,7 +86,7 @@ def sotoaj_feat(tr,delta):
 	coefts=np.polynomial.legendre.legfit(rescaledtimes,envelopets,7)
 
 	duration=len(tr)
-	feat_vector=np.concatenate(([duration],coefts,subamplis_maxs,subamplis_means))
+	feat_vector=np.concatenate(([duration],coefts,subamplis_means))
 	return(feat_vector)
 
 listevent=glob.glob('./Events/*.mseed')
@@ -113,11 +112,10 @@ for file in listevent:
 	feats7=sotoaj_feat(raw_dataB,delta)
 	h.write('%s,%f,%f,%f,%f,%f,%f,%f\n' % (event_name,feats3[0],feats3[1],feats3[2],feats3[3],feats3[4],feats3[5],feats3[6]))
 	q.write('%s,%f,%f,%f,%f,%f,%f,%f,%f,%f,%f,%f,%f,%f,%f,%f,%f,%f,%f,%f,%f,%f\n' % (event_name,feats4[0],feats4[1],feats4[2],feats4[3],feats4[4],feats4[5],feats4[6],feats4[7],feats4[8],feats4[9],feats4[10],feats4[11],feats4[12],feats4[13],feats4[14],feats4[15],feats4[16],feats4[17],feats4[18],feats4[19],feats4[20]))
-	p.write('%s,%f,%f,%f,%f,%f,%f,%f,%f,%f,%f,%f,%f,%f,%f,%f,%f,%f,%f,%f,%f,%f,%f,%f\n' % (event_name,feats7[0],feats7[1],feats7[2],feats7[3],feats7[4],feats7[5],feats7[6],feats7[7],feats7[8],feats7[9],feats7[10],feats7[11],feats7[12],feats7[13],feats7[14],feats7[15],feats7[16],feats7[17],feats7[18],feats7[19],feats7[20],feats7[21],feats7[22]))
+	p.write('%s,%f,%f,%f,%f,%f,%f,%f,%f,%f,%f,%f,%f,%f,%f,%f,%f\n' % (event_name,feats7[0],feats7[1],feats7[2],feats7[3],feats7[4],feats7[5],feats7[6],feats7[7],feats7[8],feats7[9],feats7[10],feats7[11],feats7[12],feats7[13],feats7[14],feats7[15]))
 	k=k+1
 	print('progress:',100*k/len(listevent))
 
 h.close()
 q.close()
 p.close()
-
