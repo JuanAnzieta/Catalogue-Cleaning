@@ -234,7 +234,7 @@ for event in LP_array_bad:
 	axs[0].text(0.7,0.7,'score: '+str(round(event[2],2)),transform=axs[0].transAxes)
 	axs[0].set_xlim([0,len(trace[0])/trace[0].stats.sampling_rate])
 	plt.suptitle(event[0])
-	#plt.savefig('./Figures/VT_bad/'+event[0]+'_'+str(round(event[2],4))+'.png')
+	#plt.savefig('./Figures/VT_check/'+event[0]+'_'+str(round(event[2],4))+'.png')
 	plt.show()
 	plt.close()
 	
