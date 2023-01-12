@@ -1,0 +1,1 @@
+In this folder, different figures obtained from the 'statistics_plot_calculator.py' can be saved.

@@ -1,0 +1,1 @@
+Predictions for the events in the 'Events' folder are to be saved here in .csv files with alphanumerical order for the events.
