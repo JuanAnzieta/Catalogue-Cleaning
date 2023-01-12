@@ -48,6 +48,7 @@ Still the method should be robust enough to detect extremely unusual events.
 Change the feature group everytime accordingly besides the volcano/catalogue.
 
 4) Use the 'statistics_plot_calculator.py' script to create plots, statistics and visualization of doubtful(or 'good') events. 
-Some lines may need to be (un)commented if some outputs are (un)desired. Also the 'good' and 'bad' event thresholds are subjective.
-They should be defined according to the histogram of consistencies or desired qualities defined by the researchers.
+Some lines may need to be (un)commented if some outputs are (un)desired. For example you may want to save the consistency statistics matrices 
+or the plots for 'good' and 'bad' events. Also the 'good' and 'bad' event thresholds are subjective so several opinions are encouraged.
+The thresholds should be defined according to the histogram of consistencies or desired qualities defined by the researchers.
 
